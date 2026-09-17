@@ -1,0 +1,21 @@
+Nhị Gia Web Demo — Image Attribution
+====================================
+
+All images under public/images/ are public marketing assets sourced from
+https://nhigia.vn (and related wp-content/uploads paths) for a local brand
+clone / sales demo of Nhị Gia.
+
+Source: https://nhigia.vn
+Intent: intentional use of official public marketing assets for brand demo.
+Do not redistribute as original work. Prefer linking back to nhigia.vn.
+
+Folders:
+  brand/     — logo and app icons
+  hero/      — banners, about, pattern, web photos
+  services/  — service card cover images
+  visa/      — country visa card images
+  news/      — article cover images
+  partners/  — office / team photos from official site
+  og.jpg     — Open Graph image (copy of banner-1)
+
+Downloaded: 2026-09-15

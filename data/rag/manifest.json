@@ -1,0 +1,8 @@
+{
+  "name": "nhigia-website-rag",
+  "brand": "Nhị Gia",
+  "chunks": 42,
+  "updated_at": "2026-09-16",
+  "source": "https://nhigia.vn/ (homepage + public service tips distilled for demo chatbot)",
+  "note": "Intent-first FAQ + tips corpus for hybrid Grok. No fake fees/prices. Hours/contact/services routed before TF-IDF."
+}

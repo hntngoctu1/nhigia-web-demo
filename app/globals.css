@@ -1,0 +1,816 @@
+@import "tailwindcss";
+
+:root {
+  /* Ink navy = hero overlay #06101f so chrome and photography read as one. Ivory interiors. */
+  --navy: #06101f;
+  --navy-2: #12263f;
+  --blue: #1d4ed8;
+  --blue-light: #3b82f6;
+  --gold: #c9a84c;
+  --gold-soft: #ead7a0;
+  --bg: #fbf8f2;
+  --text: #1a2740;
+  --muted: #5c677a;
+  --radius-card: 1rem;
+  --selection: #c9a84c;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-brand: var(--blue);
+  --color-brand-light: var(--blue-light);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-surface: var(--bg);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-be-vietnam);
+  --radius-card: var(--radius-card);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 8.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ken-burns {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-be-vietnam), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--gold);
+  color: #fff;
+}
+::-moz-selection {
+  background: var(--gold);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Prose / inline content links — underline on hover */
+.prose-link,
+.prose-page a:not(.btn-primary):not(.btn-secondary) {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+.prose-link:hover,
+.prose-page a:not(.btn-primary):not(.btn-secondary):hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  border-radius: 9999px;
+  background: var(--navy);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.55s ease-out both;
+}
+.delay-1 {
+  animation-delay: 0.08s;
+}
+.delay-2 {
+  animation-delay: 0.16s;
+}
+.delay-3 {
+  animation-delay: 0.24s;
+}
+
+.ken-burns {
+  animation: ken-burns 18s ease-out forwards;
+}
+
+.section-y {
+  padding-block: 4.75rem;
+}
+@media (min-width: 768px) {
+  .section-y {
+    padding-block: 6.25rem;
+  }
+}
+
+.container-page {
+  margin-inline: auto;
+  max-width: 72rem; /* max-w-6xl */
+  padding-inline: 1.125rem;
+}
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 1.5rem;
+  }
+}
+
+.section-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a7a1f; /* deeper gold for contrast on light surfaces */
+}
+
+/* Shared section typography — keep H2/H3/lead consistent across pages */
+.section-title {
+  font-size: 1.625rem; /* ~26px */
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 1.875rem; /* 30px */
+  }
+}
+.section-h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+@media (min-width: 640px) {
+  .section-h3 {
+    font-size: 1rem;
+  }
+}
+.section-lead {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: rgb(71 85 105); /* slate-600 */
+}
+@media (min-width: 640px) {
+  .section-lead {
+    font-size: 1rem;
+  }
+}
+
+/* Thin gold accent under hero H1 */
+.gold-rule {
+  display: block;
+  width: 4rem;
+  height: 2px;
+  margin-top: 1.15rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft) 70%, transparent);
+}
+
+.card {
+  overflow: hidden;
+  border-radius: calc(var(--radius-card) + 0.125rem);
+  border: 1px solid rgb(226 232 240 / 0.95);
+  background: white;
+  box-shadow:
+    0 1px 2px rgb(15 23 42 / 0.03),
+    0 8px 24px -12px rgb(15 23 42 / 0.08);
+  transition:
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+.card:hover {
+  box-shadow:
+    0 14px 28px -8px rgb(15 23 42 / 0.12),
+    0 6px 12px -6px rgb(15 23 42 / 0.06);
+}
+
+/* Service / interactive cards — duration feel */
+.card-lift {
+  transition:
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: rgb(201 162 39 / 0.4);
+  box-shadow:
+    0 18px 36px -10px rgb(15 23 42 / 0.14),
+    0 8px 14px -8px rgb(15 23 42 / 0.08),
+    0 0 0 1px rgb(201 162 39 / 0.08);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--navy);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+  transition: background 0.15s ease;
+}
+.btn-primary:hover {
+  background: var(--navy-2);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--gold);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.btn-gold:hover {
+  background: var(--gold-soft);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(10 26 50 / 0.22);
+  background: white;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--navy);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.btn-secondary:hover {
+  background: rgb(244 246 250);
+  border-color: var(--navy);
+}
+
+/* Legal / long-form typography */
+.prose-page {
+  max-width: 42rem;
+  margin-inline: auto;
+  color: rgb(71 85 105);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.prose-page h1 {
+  color: var(--navy);
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 640px) {
+  .prose-page h1 {
+    font-size: 2.25rem;
+  }
+}
+.prose-page h2 {
+  color: var(--navy);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgb(226 232 240);
+}
+.prose-page h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.prose-page p {
+  margin-top: 0.75rem;
+}
+.prose-page ul {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.prose-page li + li {
+  margin-top: 0.35rem;
+}
+.prose-page .lead {
+  font-size: 1.05rem;
+  color: rgb(100 116 139);
+  margin-top: 1rem;
+}
+
+/* Sticky mobile CTA clearance + safe area */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+
+/* Scroll reveal (IntersectionObserver via Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Cheap loading skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgb(226 232 240) 0%,
+    rgb(241 245 249) 50%,
+    rgb(226 232 240) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: rgb(226 232 240);
+  }
+}
+
+/* Gold-on-navy: prefer gold-soft for text contrast on dark surfaces */
+.text-gold-on-navy {
+  color: var(--gold-soft);
+}
+
+/* Hero carousel — crossfade + gold progress */
+.hero-fade {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.hero-progress-track {
+  height: 2.5px;
+  width: 100%;
+  background: rgb(255 255 255 / 0.1);
+  overflow: hidden;
+}
+
+.hero-progress {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-soft) 100%
+  );
+  animation-name: hero-progress-grow;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.hero-progress--static {
+  animation: none;
+  transform: none;
+  transition: width 0.35s ease;
+}
+
+@keyframes hero-progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade {
+    transition: none !important;
+  }
+  .hero-progress {
+    animation: none !important;
+  }
+}
+
+
+/* Thin navy scrollbar (WebKit) */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(18 43 79 / 0.35);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgb(10 26 50 / 0.55);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+@supports (scrollbar-color: red blue) {
+  html {
+    scrollbar-color: rgb(18 43 79 / 0.4) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+@keyframes chat-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.chat-panel-enter {
+  animation: chat-panel-in 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom right;
+}
+
+/* Fill the overlay; 100svh shrinks with the mobile keyboard so the composer stays on screen. */
+.chat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-height: 100svh;
+}
+.chat-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+.chat-shell :focus,
+.chat-shell :focus-visible {
+  outline: none !important;
+  box-shadow: none;
+}
+#nhigia-chat-input {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#nhigia-chat-input:focus,
+#nhigia-chat-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+@media (min-width: 768px) {
+  .chat-overlay {
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    max-height: 100dvh;
+  }
+  .chat-shell {
+    flex: 0 0 auto;
+    height: min(680px, calc(100dvh - 3rem));
+    max-height: calc(100dvh - 3rem);
+    width: 400px;
+  }
+}
+
+@keyframes chat-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.chat-msg-in {
+  animation: chat-msg-in 0.28s ease-out both;
+}
+
+.chat-user {
+  background: linear-gradient(180deg, #f8f0d8 0%, #f0e2b6 100%);
+  color: #1a2740;
+  box-shadow: 0 1px 0 rgb(196 160 53 / 0.35);
+  -webkit-tap-highlight-color: transparent;
+}
+.chat-user::selection,
+.chat-user *::selection {
+  background: #c4a035;
+  color: #fff;
+}
+.chat-thread {
+  background:
+    radial-gradient(900px 220px at 100% 0%, rgb(196 160 53 / 0.14), transparent 52%),
+    linear-gradient(180deg, #fffdf8 0%, #f7f3ea 100%);
+}
+.chat-backdrop {
+  animation: chat-panel-in 0.28s ease-out both;
+}
+.chat-thread::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-thread::-webkit-scrollbar-thumb {
+  background: rgb(10 26 50 / 0.18);
+  border-radius: 99px;
+}
+
+.chat-dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--gold);
+  opacity: 0.35;
+  animation: chat-dot 1s ease-in-out infinite;
+}
+.chat-dot-2 {
+  animation-delay: 0.15s;
+}
+.chat-dot-3 {
+  animation-delay: 0.3s;
+}
+@keyframes chat-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.chat-fab-pulse {
+  animation: chat-fab-pulse 2.4s ease-out infinite;
+  background: color-mix(in srgb, var(--gold) 50%, transparent);
+}
+.chat-fab-pulse-2 {
+  animation-delay: 0.9s;
+  animation-duration: 2.8s;
+  background: color-mix(in srgb, var(--gold-soft) 40%, transparent);
+}
+@keyframes chat-fab-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.chat-bot-attract {
+  animation: chat-bot-attract 5.6s cubic-bezier(0.34, 1.4, 0.64, 1) infinite;
+  transform-origin: 50% 80%;
+  will-change: transform;
+}
+@keyframes chat-bot-attract {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  8% {
+    transform: translateY(-5px) rotate(-10deg) scale(1.08);
+  }
+  14% {
+    transform: translateY(-2px) rotate(9deg) scale(1.1);
+  }
+  20% {
+    transform: translateY(-6px) rotate(-5deg) scale(1.06);
+  }
+  28% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  55% {
+    transform: translateY(-3px) scale(1.03);
+  }
+  70% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chat-fab-glow {
+  animation: chat-fab-glow 2.2s ease-in-out infinite;
+}
+@keyframes chat-fab-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 32px -10px rgb(6 16 31 / 0.7),
+      0 0 0 0 rgb(196 160 53 / 0.0);
+  }
+  50% {
+    box-shadow:
+      0 14px 36px -8px rgb(6 16 31 / 0.75),
+      0 0 22px 2px rgb(196 160 53 / 0.45);
+  }
+}
+
+.chat-teaser-pop {
+  animation: chat-teaser-pop 0.55s cubic-bezier(0.16, 1.2, 0.3, 1) both,
+    chat-teaser-nudge 4.8s ease-in-out 1.2s infinite;
+  transform-origin: bottom right;
+}
+@keyframes chat-teaser-pop {
+  from {
+    opacity: 0;
+    transform: translateX(14px) translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+@keyframes chat-teaser-nudge {
+  0%,
+  78%,
+  100% {
+    transform: translateX(0);
+  }
+  84% {
+    transform: translateX(-4px);
+  }
+  90% {
+    transform: translateX(2px);
+  }
+  94% {
+    transform: translateX(0);
+  }
+}
+
+.chat-spark {
+  position: absolute;
+  top: -2px;
+  right: 6px;
+  z-index: 3;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  box-shadow: 0 0 8px 2px rgb(240 220 150 / 0.9);
+  animation: chat-spark 1.8s ease-in-out infinite;
+}
+@keyframes chat-spark {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-panel-enter,
+  .chat-msg-in,
+  .chat-dot,
+  .chat-fab-pulse,
+  .chat-bot-attract,
+  .chat-fab-glow,
+  .chat-teaser-pop,
+  .chat-spark {
+    animation: none;
+  }
+}
+
+/* Mega-menu / mobile sheet entrance */
+@keyframes mega-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mega-sheet {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes mega-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.mega-panel {
+  animation: mega-panel-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mega-panel,
+  .mega-backdrop {
+    animation: none !important;
+  }
+}
