@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -14,9 +15,9 @@ export default function PrivacyPage() {
       <main id="main-content" className="section-y">
         <article className="prose-page px-4">
           <nav className="mb-6 text-xs text-muted" aria-label="Breadcrumb">
-            <a href="/" className="hover:text-navy">
+            <Link href="/" className="hover:text-navy">
               Trang chủ
-            </a>
+            </Link>
             <span className="mx-1.5 opacity-50" aria-hidden>
               /
             </span>

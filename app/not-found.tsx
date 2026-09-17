@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -37,15 +38,15 @@ export default function NotFound() {
             hệ tổng đài để được hỗ trợ.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="/" className="btn-gold">
+            <Link href="/" className="btn-gold">
               Về trang chủ
-            </a>
-            <a
+            </Link>
+            <Link
               href="/lien-he"
               className="rounded-full border border-white/40 bg-white/10 px-5 py-3 text-sm font-bold backdrop-blur transition hover:bg-white/20"
             >
               Liên hệ tư vấn
-            </a>
+            </Link>
             <a
               href="tel:19006654"
               className="rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-blue-50 transition hover:bg-white/10"

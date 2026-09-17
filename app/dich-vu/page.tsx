@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import {
   SERVICE_GROUPS,
@@ -57,9 +58,9 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
           </div>
           <div className="relative container-page py-12 md:py-16">
             <nav className="text-xs text-blue-200" aria-label="Breadcrumb">
-              <a href="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 Trang chủ
-              </a>
+              </Link>
               <span className="mx-2 opacity-60" aria-hidden>
                 /
               </span>
@@ -96,7 +97,7 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
               <span className="hidden px-2 text-[10px] font-bold uppercase tracking-wider text-blue-200/70 sm:inline">
                 Đối tượng
               </span>
-              <a
+              <Link
                 href="/dich-vu"
                 className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
                   !forParam
@@ -106,8 +107,8 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
                 aria-current={!forParam ? "page" : undefined}
               >
                 Tất cả
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/dich-vu?for=dn"
                 className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
                   forParam === "dn"
@@ -120,8 +121,8 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
                 <span className="ml-1 hidden font-semibold opacity-70 sm:inline">
                   · Doanh nghiệp
                 </span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/dich-vu?for=cn"
                 className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
                   forParam === "cn"
@@ -134,7 +135,7 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
                 <span className="ml-1 hidden font-semibold opacity-70 sm:inline">
                   · Cá nhân
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -144,9 +145,9 @@ export default async function DichVuIndexPage({ searchParams }: Props) {
             {groups.length === 0 ? (
               <p className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-600">
                 Không có dịch vụ trong bộ lọc này.{" "}
-                <a href="/dich-vu" className="prose-link font-semibold">
+                <Link href="/dich-vu" className="prose-link font-semibold">
                   Xem tất cả
-                </a>
+                </Link>
               </p>
             ) : (
               groups.map((g) => (
